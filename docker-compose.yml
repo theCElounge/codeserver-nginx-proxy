@@ -1,0 +1,26 @@
+services:
+  code-server:
+    image: codercom/code-server:latest
+    container_name: code-server-final
+    environment:
+      - PASSWORD=changeme
+    volumes:
+      - code-server-data:/home/coder/.local/share/code-server
+      - ./projects:/home/coder/project
+    expose:
+      - "8080"
+    command: --bind-addr 0.0.0.0:8080 --auth password
+
+  nginx:
+    image: nginx:latest
+    container_name: code-server-final-nginx
+    ports:
+      - "8123:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - code-server
+
+volumes:
+  code-server-data:
