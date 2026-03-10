@@ -1,7 +1,7 @@
 services:
   code-server:
     image: codercom/code-server:latest
-    container_name: code-server-final
+    container_name: code-server
     environment:
       - PASSWORD=changeme
     volumes:
@@ -13,7 +13,7 @@ services:
 
   nginx:
     image: nginx:latest
-    container_name: code-server-final-nginx
+    container_name: code-server-nginx
     ports:
       - "8123:443"
     volumes:
