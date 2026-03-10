@@ -28,86 +28,11 @@ Not recommended for:
 * Production hosting without additional security layers
 ---
 
-# Architecture
-
-## System Overview
-
-```
-           ┌───────────────────────┐
-           │        Browser        │
-           │ https://IP:8123       │
-           └────────────┬──────────┘
-                        │
-                        │ HTTPS (TLS)
-                        ▼
-            ┌──────────────────────┐
-            │      Nginx Proxy     │
-            │   Docker Container   │
-            └────────────┬─────────┘
-                         │
-                         │ HTTP (internal docker network)
-                         ▼
-            ┌──────────────────────┐
-            │     code-server      │
-            │   Docker Container   │
-            └──────────────────────┘
-```
-
-### Security Design
-
-* Only **Nginx exposes a network port**
-* `code-server` runs on an **internal Docker network**
-* TLS encryption protects browser traffic
-* Password authentication protects VS Code
-
----
-
-# Features
-
-✔ VS Code in the browser
-✔ HTTPS encrypted connection
-✔ Docker-based deployment
-✔ Isolated backend container
-✔ Persistent workspace storage
-✔ Works on Linux / Windows / Mac
-
----
-
-# Requirements
-
-Install:
-
-* Docker
-* Docker Compose
-
-Verify installation:
-
-```bash
-docker --version
-docker compose version
-```
-
----
-
-# Project Structure
-
-```
-secure-code-server-docker
-│
-├── docker-compose.yml
-├── nginx.conf
-├── README.md
-│
-└── ssl
-    ├── nginx-selfsigned.crt
-    └── nginx-selfsigned.key
-```
-
----
-
 # Quick Start
 
 ## 1️⃣ Clone Repository
+
+Download or clone this repository.
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/secure-code-server-docker.git
@@ -189,6 +114,85 @@ environment:
 ```
 
 ---
+
+# Architecture
+
+## System Overview
+
+```
+           ┌───────────────────────┐
+           │        Browser        │
+           │ https://IP:8123       │
+           └────────────┬──────────┘
+                        │
+                        │ HTTPS (TLS)
+                        ▼
+            ┌──────────────────────┐
+            │      Nginx Proxy     │
+            │   Docker Container   │
+            └────────────┬─────────┘
+                         │
+                         │ HTTP (internal docker network)
+                         ▼
+            ┌──────────────────────┐
+            │     code-server      │
+            │   Docker Container   │
+            └──────────────────────┘
+```
+
+### Security Design
+
+* Only **Nginx exposes a network port**
+* `code-server` runs on an **internal Docker network**
+* TLS encryption protects browser traffic
+* Password authentication protects VS Code
+
+---
+
+# Features
+
+✔ VS Code in the browser
+✔ HTTPS encrypted connection
+✔ Docker-based deployment
+✔ Isolated backend container
+✔ Persistent workspace storage
+✔ Works on Linux / Windows / Mac
+
+---
+
+# Requirements
+
+Install:
+
+* Docker
+* Docker Compose
+
+Verify installation:
+
+```bash
+docker --version
+docker compose version
+```
+
+---
+
+# Project Structure
+
+```
+secure-code-server-docker
+│
+├── docker-compose.yml
+├── nginx.conf
+├── README.md
+│
+└── ssl
+    ├── nginx-selfsigned.crt
+    └── nginx-selfsigned.key
+```
+
+---
+
+
 
 # Change Password
 
