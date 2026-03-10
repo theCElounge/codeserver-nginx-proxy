@@ -21,7 +21,11 @@ Designed for:
 * University labs
 * Internal networks
 * Secure remote programming
+  
+Not recommended for:
 
+* Public internet exposure
+* Production hosting without additional security layers
 ---
 
 # Architecture
