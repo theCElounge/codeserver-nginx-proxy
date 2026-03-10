@@ -1,16 +1,15 @@
 services:
   code-server:
-    image: codercom/code-server:latest
+    build: .
     container_name: code-server
+    command: --bind-addr 0.0.0.0:8080 --auth password
     environment:
       - PASSWORD=changeme
-    volumes:
-      - code-server-data:/home/coder/.local/share/code-server
-      - ./projects:/home/coder/project
     expose:
       - "8080"
-    command: --bind-addr 0.0.0.0:8080 --auth password
-
+    volumes:
+      - code-server-data:/home/coder/.local/share/code-server
+      - code-server-workspace:/home/coder/workspace
   nginx:
     image: nginx:latest
     container_name: code-server-nginx
@@ -24,3 +23,4 @@ services:
 
 volumes:
   code-server-data:
+  code-server-workspace:
